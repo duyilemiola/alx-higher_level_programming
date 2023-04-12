@@ -1,23 +1,9 @@
 #!/usr/bin/node
-
-if (process.argv.length > 3) {
-  let numArray = [];
-  let j = 0;
-  for (let i = 2; i < process.argv.length; i++) {
-    numArray[j] = process.argv[i];
-    j++;
-  }
-  let largest = numArray[0];
-  let nextLargest = numArray[1];
-  for (let i = 0; i < numArray.length; i++) {
-    if (numArray[i] > largest) {
-      nextLargest = largest;
-      largest = numArray[i];
-    } else if (numArray[i] > nextLargest && numArray[i] < largest) {
-      nextLargest = numArray[i];
-    }
-  }
-  console.log(nextLargest);
-} else {
+if (process.argv.length <= 3) {
   console.log(0);
+} else {
+  const args = process.argv.map(Number)
+    .slice(2, process.argv.length)
+    .sort((a, b) => a - b);
+  console.log(args[args.length - 2]);
 }
